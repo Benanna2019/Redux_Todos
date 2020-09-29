@@ -1,4 +1,4 @@
-import { ADD_TODO } from "../actions";
+import { ADD_TODO, TOGGLE_TODO } from "../actions";
 
 export default function todos(state = [], action) {
   switch (action.type) {
@@ -11,6 +11,12 @@ export default function todos(state = [], action) {
           completed: false,
         },
       ];
+    case TOGGLE_TODO:
+      return state.map((todo) => {
+        return action.id === todo.id
+          ? { ...todo, completed: !todo.completed }
+          : todo;
+      });
     default:
       return state;
   }

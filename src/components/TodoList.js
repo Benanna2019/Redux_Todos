@@ -1,22 +1,16 @@
 import React from "react";
 import Todo from "./Todo";
 
-function checkIfRender(visibilityFilter, completed) {
-  if (visibilityFilter === "SHOW_ALL") return true;
-  else if (visibilityFilter === "SHOW_COMPLETED") {
-    if (completed) return true;
-    return false;
-  } else if (visibilityFilter === "SHOW_ACTIVE") {
-    if (completed) return false;
-    return true;
-  }
-}
-
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, boundToggleTodo }) => {
   return (
     <div>
       {todos.map((todo) => (
-        <Todo id={todo.id} text={todo.text} completed={todo.completed} />
+        <Todo
+          id={todo.id}
+          text={todo.text}
+          completed={todo.completed}
+          boundToggleTodo={boundToggleTodo}
+        />
       ))}
     </div>
   );
